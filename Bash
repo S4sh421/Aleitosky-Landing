@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AleitoSky | No es solo música. Es otra dimensión.</title>
+  <meta name="description" content="AleitoSky: música con IA, emoción humana y una experiencia sonora entre lo oscuro, lo futurista y lo visceral." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="logo aleitosky.png">
+  <style>
+    :root {
+      --bg: #050507;
+      --bg-soft: #0d0d14;
+      --card-border: rgba(255,255,255,.12);
+      --text: #f4f1eb;
+      --muted: #b9b4c7;
+      --gold: #f3bf62;
+      --fire: #ff6a2b;
+      --red: #e93636;
+      --violet: #8f5cff;
+      --blue: #39b8ff;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 24px;
+      --max: 1240px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(233,54,54,.15), transparent 25%),
+        radial-gradient(circle at 80% 10%, rgba(57,184,255,.15), transparent 20%),
+        radial-gradient(circle at 50% 80%, rgba(143,92,255,.12), transparent 25%),
+        linear-gradient(180deg, #050507 0%, #08070d 35%, #040405 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.06));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section {
+      padding: 88px 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      line-height: 1;
+      text-align: center;
+      margin: 0 0 18px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .section-kicker {
+      text-align: center;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: .8rem;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    .section-copy {
+      width: min(780px, 100%);
+      margin: 0 auto 34px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 1.06rem;
+      line-height: 1.7;
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      align-items: center;
+      padding: 32px 0 54px;
+    }
+
+    .hero-wrap {
+      position: relative;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #09090f;
+      min-height: 86svh;
+      display: grid;
+      align-items: end;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.55) 55%, rgba(0,0,0,.86) 100%),
+        url('AFTER THE FIRE (1).png') center/cover no-repeat;
+      transform: scale(1.02);
+    }
+
+    .hero-glow {
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 45%;
+      background: linear-gradient(180deg, transparent 0%, rgba(255,106,43,.18) 45%, rgba(143,92,255,.12) 100%);
+      pointer-events: none;
+    }
+
+    .topbar {
+      position: absolute;
+      inset: 18px 18px auto 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      z-index: 3;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(0,0,0,.28);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .95rem;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.6);
+      padding: 6px;
+      box-shadow: 0 0 20px rgba(243,191,98,0.4), 0 0 60px rgba(243,191,98,0.2);
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      color: rgba(255,255,255,.88);
+      font-size: .92rem;
+      font-weight: 600;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 140px 44px 52px;
+      width: min(820px, 100%);
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 16px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .78rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: .95;
+      letter-spacing: .04em;
+      text-shadow: 0 0 40px rgba(255,106,43,.16);
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #fff 0%, #f3bf62 38%, #ff6a2b 68%, #8f5cff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      line-height: 1.7;
+      color: #f3efff;
+      max-width: 680px;
+      margin: 0 0 28px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 18px;
+      padding: 15px 22px;
+      font-weight: 700;
+      font-size: .98rem;
+      border: 1px solid transparent;
+      transition: .25s ease;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #16a34a 0%, #1db954 100%);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.14);
+      color: white;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #efe9ff;
+      font-size: .82rem;
+      font-weight: 600;
+    }
+
+    .stream-grid,
+    .music-grid,
+    .gallery-grid,
+    .video-grid,
+    .future-grid,
+    .contact-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .stream-grid { grid-template-columns: repeat(3, 1fr); }
+    .music-grid { grid-template-columns: repeat(3, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+    .video-grid { grid-template-columns: repeat(2, 1fr); }
+    .future-grid { grid-template-columns: repeat(3, 1fr); }
+    .contact-grid { grid-template-columns: 1.1fr .9fr; align-items: stretch; }
+
+    .glass-card,
+    .music-card,
+    .gallery-card,
+    .contact-card,
+    .concept-card,
+    .future-card,
+    .video-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .glass-card { padding: 28px; min-height: 180px; }
+
+    .glass-card::before,
+    .music-card::before,
+    .gallery-card::before,
+    .contact-card::before,
+    .concept-card::before,
+    .future-card::before,
+    .video-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(255,255,255,.08), transparent 35%);
+      pointer-events: none;
+    }
+
+    .stream-spotify { background: linear-gradient(135deg, rgba(29,185,84,.18), rgba(255,255,255,.03)); }
+    .stream-youtube { background: linear-gradient(135deg, rgba(255,0,0,.16), rgba(255,255,255,.03)); }
+    .stream-soundon { background: linear-gradient(135deg, rgba(143,92,255,.2), rgba(255,255,255,.03)); }
+
+    .stream-label {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .72rem;
+      font-weight: 700;
+    }
+
+    .glass-card h3,
+    .concept-card h3,
+    .future-card h3,
+    .contact-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+    }
+
+    .glass-card p,
+    .concept-card p,
+    .future-card p,
+    .contact-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .mini-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      color: white;
+      font-weight: 700;
+    }
+
+    .experience {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .experience-visual,
+    .experience-copy {
+      min-height: 560px;
+    }
+
+    .experience-visual {
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background: #0b0813;
+      box-shadow: var(--shadow);
+    }
+
+    .experience-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .experience-copy {
+      padding: 36px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .experience-copy h2,
+    .concept-card h2 {
+      margin: 0 0 16px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.02;
+      text-transform: uppercase;
+    }
+
+    .experience-copy p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1.03rem;
+      margin: 0 0 16px;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .feature-item {
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      background: rgba(255,255,255,.04);
+      color: #f6f0ff;
+      font-weight: 600;
+    }
+
+    .music-card,
+    .gallery-card {
+      min-height: 460px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+    }
+
+    .music-card img,
+    .gallery-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .music-card::after,
+    .gallery-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.28) 38%, rgba(0,0,0,.86) 100%);
+    }
+
+    .music-content,
+    .gallery-content,
+    .video-content {
+      position: relative;
+      z-index: 2;
+      padding: 24px;
+    }
+
+    .music-tag {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--gold);
+      font-size: .72rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .music-card h3,
+    .gallery-card h3,
+    .video-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.5rem;
+    }
+
+    .music-card p,
+    .gallery-card p,
+    .video-card p {
+      margin: 0 0 18px;
+      color: #ddd3ea;
+      line-height: 1.6;
+    }
+
+    .play-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .play-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.14);
+      color: white;
+      font-weight: 700;
+    }
+
+    .play-btn.primary { background: linear-gradient(90deg, rgba(255,106,43,.9), rgba(233,54,54,.9)); }
+
+    .gallery-card { min-height: 420px; }
+
+    .video-card iframe {
+      display: block;
+      width: 100%;
+      height: 260px;
+      border: 0;
+      background: #000;
+    }
+
+    .video-content { padding-top: 18px; }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 24px;
+    }
+
+    .concept-card {
+      padding: 34px;
+      min-height: 100%;
+    }
+
+    .concept-points {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .concept-point {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #f5efff;
+      font-weight: 600;
+    }
+
+    .future-card { padding: 28px; }
+
+    .contact-card {
+      padding: 34px;
+      min-height: 100%;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .contact-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      font-weight: 600;
+      color: #f5efff;
+    }
+
+    .footer {
+      padding: 32px 0 70px;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 30;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(180deg, #25d366, #0ea34a);
+      color: white;
+      font-size: 1.4rem;
+      box-shadow: 0 20px 40px rgba(37,211,102,.28);
+      border: 1px solid rgba(255,255,255,.22);
+    }
+
+    .note-box {
+      width: min(980px, 100%);
+      margin: 0 auto 28px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(243,191,98,.24);
+      background: rgba(243,191,98,.08);
+      color: #f8efdb;
+      line-height: 1.6;
+      font-size: .94rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1120px) {
+      .music-grid,
+      .gallery-grid,
+      .future-grid,
+      .stream-grid,
+      .concept-grid,
+      .experience,
+      .contact-grid,
+      .video-grid { grid-template-columns: 1fr 1fr; }
+
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .future-grid { grid-template-columns: 1fr; }
+      .contact-grid,
+      .concept-grid,
+      .experience { grid-template-columns: 1fr; }
+      .experience-visual, .experience-copy { min-height: auto; }
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(var(--max), calc(100% - 20px)); }
+      .section { padding: 66px 0; }
+      .hero-content { padding: 124px 22px 28px; }
+      .topbar { flex-direction: column; align-items: flex-start; }
+      .nav { justify-content: flex-start; gap: 12px; }
+      .stream-grid,
+      .music-grid,
+      .gallery-grid,
+      .video-grid,
+      .feature-list,
+      .contact-grid { grid-template-columns: 1fr; }
+      .music-card,
+      .gallery-card { min-height: 360px; }
+      .btn { width: 100%; }
+      .hero-cta { flex-direction: column; }
+      .hero-meta { flex-direction: column; align-items: flex-start; }
+      .brand img { width: 40px; height: 40px; }
+      .video-card iframe { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-wrap reveal">
+        <div class="hero-bg"></div>
+        <div class="hero-glow"></div>
+
+        <div class="topbar">
+          <div class="brand">
+            <img src="logo aleitosky.png" alt="Logo AleitoSky" />
+            <span>AleitoSky</span>
+          </div>
+          <nav class="nav">
+            <a href="#streaming">Streaming</a>
+            <a href="#destacados">Destacados</a>
+            <a href="#galeria">Galería</a>
+            <a href="#videos">Videos</a>
+            <a href="#concepto">Concepto</a>
+            <a href="#contacto">Contacto</a>
+          </nav>
+        </div>
+
+        <div class="hero-content">
+          <div class="hero-kicker">IA + emoción humana + otra dimensión</div>
+          <h1><span>ALEITOSKY</span></h1>
+          <p>
+            No es solo música. Es otra dimensión. Un universo sonoro donde la inteligencia artificial, la emoción,
+            la oscuridad, el fuego y la nostalgia chocan para crear una experiencia imposible de encasillar.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="https://open.spotify.com/intl-es/artist/5kIlxM3DTLW4Z10kAOLNN3?si=HfUIRf7GQHeEagimH__BFg" target="_blank" rel="noopener noreferrer">🔥 Escuchar en Spotify</a>
+            <a class="btn btn-secondary" href="#streaming">⚡ Entrar al universo</a>
+          </div>
+          <div class="hero-meta">
+            <span class="pill">Electrónica</span>
+            <span class="pill">Trap</span>
+            <span class="pill">Dark</span>
+            <span class="pill">Country</span>
+            <span class="pill">Jazz / Blues</span>
+            <span class="pill">Experimental</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="streaming">
+    <div class="container">
+      <div class="section-kicker reveal">Acceso directo</div>
+      <h2 class="section-title reveal">Streaming</h2>
+      <p class="section-copy reveal">
+        Entrá directo a la música, los videos y la distribución oficial de AleitoSky. Sin desvíos. Sin ruido.
+      </p>
+      <div class="stream-grid">
+        <a class="glass-card stream-spotify reveal" href="https://open.spotify.com/intl-es/artist/5kIlxM3DTLW4Z10kAOLNN3?si=HfUIRf7GQHeEagimH__BFg" target="_blank" rel="noopener noreferrer">
+          <span class="stream-label">Plataforma principal</span>
+          <h3>Escuchar en Spotify</h3>
+          <p>La puerta principal para sumar oyentes, seguidores y reproducir el catálogo completo.</p>
+          <span class="mini-link">Abrir perfil →</span>
+        </a>
+        <a class="glass-card stream-youtube reveal" href="https://www.youtube.com/@aleitosky78" target="_blank" rel="noopener noreferrer">
+          <span class="stream-label">Video y comunidad</span>
+          <h3>Ver en YouTube</h3>
+          <p>Canal principal con videoclips, visuales y expansión del universo AleitoSky.</p>
+          <span class="mini-link">Ir al canal →</span>
+        </a>
+        <a class="glass-card stream-soundon reveal" href="https://www.soundon.global/bio/aleitosky" target="_blank" rel="noopener noreferrer">
+          <span class="stream-label">Distribución oficial</span>
+          <h3>Ver en SoundOn</h3>
+          <p>Perfil oficial de distribución para consolidar presencia, identidad y expansión multiplataforma.</p>
+          <span class="mini-link">Abrir SoundOn →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="experience">
+        <div class="experience-visual reveal">
+          <img src="aleitosky_cyber.png" alt="AleitoSky identidad visual IA" />
+        </div>
+        <div class="experience-copy reveal">
+          <div class="section-kicker" style="text-align:left;">Experiencia AleitoSky</div>
+          <h2>SONIDO, IA, OSCURIDAD Y ALMA</h2>
+          <p>
+            AleitoSky no entra en un solo género porque su propuesta no nace para obedecer etiquetas. Nace para provocar una reacción.
+            Cada track funciona como una escena: fuego, deseo, caída, renacimiento, noche, ciudad, introspección y energía.
+          </p>
+          <p>
+            La IA acá no reemplaza emoción. La expande. El resultado es una identidad híbrida: tecnológica en la creación, visceral en el impacto.
+          </p>
+          <div class="feature-list">
+            <div class="feature-item">Experiencias emocionales híbridas</div>
+            <div class="feature-item">Estética dark + futurista + cinematográfica</div>
+            <div class="feature-item">Cruce real de géneros y atmósferas</div>
+            <div class="feature-item">Marca lista para escalar a servicios IA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="destacados">
+    <div class="container">
+      <div class="section-kicker reveal">Lanzamientos clave</div>
+      <h2 class="section-title reveal">Destacados</h2>
+      <p class="section-copy reveal">
+        Un recorrido por los ejes principales del universo AleitoSky: fuego, sombra y emoción.
+      </p>
+      <div class="music-grid">
+        <article class="music-card reveal">
+          <img src="AFTER THE FIRE (1).png" alt="After The Fire" />
+          <div class="music-content">
+            <span class="music-tag">Último lanzamiento</span>
+            <h3>After The Fire</h3>
+            <p>Renacimiento, fuerza y una atmósfera de impacto total. La entrada ideal al universo AleitoSky.</p>
+            <div class="play-row">
+              <a class="play-btn primary" href="https://youtube.com/playlist?list=OLAK5uy_lKWp78M-Cg2blOvvv6VNSuiD_g4vAU3r0&si=blyZH_2wD3Hvx9wb" target="_blank" rel="noopener noreferrer">▶ Abrir playlist</a>
+              <a class="play-btn" href="https://open.spotify.com/intl-es/artist/5kIlxM3DTLW4Z10kAOLNN3?si=HfUIRf7GQHeEagimH__BFg" target="_blank" rel="noopener noreferrer">Spotify</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="music-card reveal">
+          <img src="inner_monster_final.png" alt="Inner Monster" />
+          <div class="music-content">
+            <span class="music-tag">Oscuridad central</span>
+            <h3>Inner Monster</h3>
+            <p>El costado más oscuro, intenso y simbólico. Un eje central de marca y narrativa visual.</p>
+            <div class="play-row">
+              <a class="play-btn primary" href="https://youtube.com/playlist?list=OLAK5uy_lyPRu0_qOMMpVXLVZcytsyDCVlalbPLqg&si=IZSw81pe_qTnu_Q6" target="_blank" rel="noopener noreferrer">▶ Abrir playlist</a>
+              <a class="play-btn" href="https://open.spotify.com/intl-es/artist/5kIlxM3DTLW4Z10kAOLNN3?si=HfUIRf7GQHeEagimH__BFg" target="_blank" rel="noopener noreferrer">Spotify</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="music-card reveal">
+          <img src="SE AINDA POR NOIS.png" alt="Se Ainda Por Nós" />
+          <div class="music-content">
+            <span class="music-tag">Tema gancho</span>
+            <h3>Se Ainda Por Nós</h3>
+            <p>Más humano, más nostálgico y con una carga emocional que expande el lado sensible de la marca.</p>
+            <div class="play-row">
+              <a class="play-btn primary" href="https://youtu.be/Hg6MGNlU0PE?si=AxCvl_HzRINLUrGi" target="_blank" rel="noopener noreferrer">▶ Ver en YouTube</a>
+              <a class="play-btn" href="https://open.spotify.com/intl-es/artist/5kIlxM3DTLW4Z10kAOLNN3?si=HfUIRf7GQHeEagimH__BFg" target="_blank" rel="noopener noreferrer">Spotify</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="galeria">
+    <div class="container">
+      <div class="section-kicker reveal">Visual identity</div>
+      <h2 class="section-title reveal">Una experiencia visual</h2>
+      <p class="section-copy reveal">
+        Las imágenes no decoran la música: expanden su narrativa. Cada arte funciona como una puerta a otra capa de la experiencia.
+      </p>
+      <div class="gallery-grid">
+        <article class="gallery-card reveal">
+          <img src="amor_furia.png" alt="Entre el Amor y la Furia" />
+          <div class="gallery-content">
+            <h3>Entre el Amor y la Furia</h3>
+            <p>El puente conceptual entre deseo, conflicto, energía y pulsión interna.</p>
+          </div>
+        </article>
+
+        <article class="gallery-card reveal">
+          <img src="cerca.png" alt="Cerca" />
+          <div class="gallery-content">
+            <h3>Cerca</h3>
+            <p>Lo íntimo, sensual y cinematográfico dentro del universo AleitoSky.</p>
+          </div>
+        </article>
+
+        <article class="gallery-card reveal">
+          <img src="inner_monster_visual.png" alt="Inner Monster visual" />
+          <div class="gallery-content">
+            <h3>Inner Monster</h3>
+            <p>La dualidad humano / sombra como fuerza narrativa de la marca.</p>
+          </div>
+        </article>
+
+        <article class="gallery-card reveal">
+          <img src="aleitosky_cyber.png" alt="AleitoSky identidad futurista" />
+          <div class="gallery-content">
+            <h3>AleitoSky</h3>
+            <p>IA, sonido, identidad y visión futurista en una sola imagen central.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="videos">
+    <div class="container">
+      <div class="section-kicker reveal">Video presence</div>
+      <h2 class="section-title reveal">Videos</h2>
+      <p class="section-copy reveal">
+        Clips, visuales y piezas para reforzar presencia, estética y consumo desde YouTube.
+      </p>
+
+      <div class="video-grid">
+        <div class="video-card reveal">
+          <iframe src="https://www.youtube.com/embed/qaJUac4Jgro" title="Video 1 AleitoSky" allowfullscreen></iframe>
+          <div class="video-content">
+            <h3>Visual 01</h3>
+            <p>Acceso directo al video en YouTube.</p>
+          </div>
+        </div>
+
+        <div class="video-card reveal">
+          <iframe src="https://www.youtube.com/embed/Z79hJd5B0_I" title="Video 2 AleitoSky" allowfullscreen></iframe>
+          <div class="video-content">
+            <h3>Visual 02</h3>
+            <p>Acceso directo al video en YouTube.</p>
+          </div>
+        </div>
+
+        <div class="video-card reveal">
+          <iframe src="https://www.youtube.com/embed/vJJE_SNnmIM" title="Video 3 AleitoSky" allowfullscreen></iframe>
+          <div class="video-content">
+            <h3>Visual 03</h3>
+            <p>Acceso directo al video en YouTube.</p>
+          </div>
+        </div>
+
+        <div class="video-card reveal">
+          <iframe src="https://www.youtube.com/embed/60xXY9wW6xE" title="Video 4 AleitoSky" allowfullscreen></iframe>
+          <div class="video-content">
+            <h3>Visual 04</h3>
+            <p>Acceso directo al video en YouTube.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="concepto">
+    <div class="container">
+      <div class="note-box reveal">
+        <strong>Importante:</strong> para que este HTML funcione sin errores en tu PC, renombrá tus archivos locales exactamente así:<br>
+        <code>aleitosky_cyber.png</code>, <code>amor_furia.png</code>, <code>cerca.png</code>, <code>inner_monster_visual.png</code>.<br>
+        Los demás pueden quedar como: <code>logo aleitosky.png</code>, <code>AFTER THE FIRE (1).png</code>, <code>inner_monster_final.png</code>, <code>SE AINDA POR NOIS.png</code>.
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card reveal">
+          <div class="section-kicker" style="text-align:left;">El concepto</div>
+          <h2>El universo AleitoSky</h2>
+          <p>
+            AleitoSky es una propuesta artística basada en cruces: lo humano y lo artificial, la herida y la épica,
+            la noche y el brillo, el blues y la electrónica, lo íntimo y lo explosivo.
+          </p>
+          <p>
+            Acá la IA no es truco. Es lenguaje. Y ese lenguaje se usa para producir algo que conecte de verdad: emoción,
+            identidad y una atmósfera capaz de quedarse adentro.
+          </p>
+          <div class="concept-points">
+            <div class="concept-point">No sigue reglas. Construye escenas sonoras.</div>
+            <div class="concept-point">No responde a etiquetas. Expande identidad.</div>
+            <div class="concept-point">No vende solo tracks. Construye universo.</div>
+          </div>
+        </div>
+
+        <div class="concept-card reveal">
+          <div class="section-kicker" style="text-align:left;">Escalabilidad</div>
+          <h3>Lo que viene</h3>
+          <p>
+            Nuevos lanzamientos cada 3 meses, fortalecimiento de Spotify, expansión de YouTube, consolidación de marca y futura apertura a servicios creativos basados en IA.
+          </p>
+          <div class="future-grid" style="margin-top:22px;">
+            <div class="future-card">
+              <h3>Releases</h3>
+              <p>Calendario sostenido para mantener presencia, algoritmo y audiencia en crecimiento.</p>
+            </div>
+            <div class="future-card">
+              <h3>Servicios IA</h3>
+              <p>Puerta abierta a producción, identidad sonora y soluciones creativas futuras.</p>
+            </div>
+            <div class="future-card">
+              <h3>Marca</h3>
+              <p>AleitoSky como hub de música, visuales, narrativa y diferenciación real.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacto">
+    <div class="container">
+      <div class="section-kicker reveal">Cierre</div>
+      <h2 class="section-title reveal">No escuches música. Vivila.</h2>
+      <p class="section-copy reveal">
+        Seguí a AleitoSky, entrá al catálogo y conectá con una propuesta creada para sentirse distinta.
+      </p>
+      <div class="contact-grid">
+        <div class="contact-card reveal">
+          <h3>Entrá ahora</h3>
+          <p>Elegí tu puerta de entrada principal. Spotify primero. YouTube para visuales. WhatsApp y mail para contacto directo.</p>
+          <div class="contact-links">
+            <a class="contact-link" href="https://open.spotify.com/intl-es/artist/5kIlxM3DTLW4Z10kAOLNN3?si=HfUIRf7GQHeEagimH__BFg" target="_blank" rel="noopener noreferrer"><span>Spotify</span><span>→</span></a>
+            <a class="contact-link" href="https://www.youtube.com/@aleitosky78" target="_blank" rel="noopener noreferrer"><span>YouTube principal</span><span>→</span></a>
+            <a class="contact-link" href="https://www.soundon.global/bio/aleitosky" target="_blank" rel="noopener noreferrer"><span>SoundOn</span><span>→</span></a>
+            <a class="contact-link" href="https://aleitosky.taplink.site" target="_blank" rel="noopener noreferrer"><span>Taplink</span><span>→</span></a>
+          </div>
+        </div>
+
+        <div class="contact-card reveal">
+          <h3>Contacto y redes</h3>
+          <p>Disponible para comunidad, oportunidades, colaboraciones y futuras líneas creativas vinculadas con IA.</p>
+          <div class="contact-links">
+            <a class="contact-link" href="https://wa.me/5491173932236" target="_blank" rel="noopener noreferrer"><span>WhatsApp</span><span>+54 9 11 7393 2236</span></a>
+            <a class="contact-link" href="mailto:aleitosky@gmail.com"><span>Email</span><span>aleitosky@gmail.com</span></a>
+            <a class="contact-link" href="https://www.instagram.com/aleitosky.ok?igsh=MThua2Q0ajZvdnFlbA==" target="_blank" rel="noopener noreferrer"><span>Instagram</span><span>@aleitosky.ok</span></a>
+            <a class="contact-link" href="https://www.toktok.com/@ali_to_78?_r=1&__t=ZS-95LiQLnywjs" target="_blank" rel="noopener noreferrer"><span>TikTok</span><span>@ali_to_78</span></a>
+            <a class="contact-link" href="https://www.facebook.com/share/1ChCi3NQKm/" target="_blank" rel="noopener noreferrer"><span>Facebook</span><span>Perfil</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>© 2026 AleitoSky. Música, visuales y expansión creativa con IA.</div>
+        <div>"No es solo música. Es otra dimensión."</div>
+      </div>
+    </div>
+  </footer>
+
+  <a class="floating-whatsapp" href="https://wa.me/5491173932236" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">✆</a>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
